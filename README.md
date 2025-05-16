@@ -1,0 +1,1 @@
+# Paradigmas_A01712547
