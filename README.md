@@ -1,4 +1,5 @@
 # Paradigmas_A01712547
+#### Juan José Goyenche Sánchez
 
 Para esta evidencia se eligio hacer un problema que haga uso de paralelismo.
 
