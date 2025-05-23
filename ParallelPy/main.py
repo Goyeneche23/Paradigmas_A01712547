@@ -35,7 +35,7 @@ def ParaleloBlancoNegro(img, threads):
     for i in range(threads):
         seg = i * alto // threads #i = parte actual, alto = total de filas, threads = procesos
         fin_seg = (i + 1) * alto // threads  #calcula el final de la parte
-        segmento = img[seg:fin_seg, :] #Dara todas las columnas entre las filas seg y fin_seg
+        segmento = img[seg:fin_seg, :] #Dara todas las columnas entre las filas seg y fin_seg, : = all
         segmentos.append(segmento) #esto se guarda en la lista
 
     # grupo de procesos
