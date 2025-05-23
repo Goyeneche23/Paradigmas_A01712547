@@ -2,7 +2,7 @@
 #### Juan José Goyenche Sánchez
 
 Para esta evidencia se eligio realizar un problema que haga uso de paralelismo. Esto para fortalezer este paradigma, al ser el que mas me costo poner en practica en los ejercicios realizados. Para esto decidi hacer un problema de renderizaciónde imagenes en el lenguaje C++, haciendo uso de OPEN CL, abundare mas en esto mas adelante.
-
+j
 ### ¿Qué es el paralelismo?
 
 ### Concurrencia Vs Paralelismo
