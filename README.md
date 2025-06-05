@@ -93,6 +93,17 @@ En la primer parte del codigo se definen los segmentos, los limites y luego esos
 ![image](https://github.com/user-attachments/assets/59ff3d35-2c35-4471-a464-c3059d04e2dd)
 (en el ejemplo los límites son con ancho, en el código con alto, en este caso se debería usar .hstack())
 
+### Creacion de threads
+
+La creacion del grupo de procesos se realiza con la siguiente funcion.
+```
+ pool = mp.Pool(processes=threads)
+```
+Tras esto el como se trabaja estos procesos es con la funcion .map(tareaFuncion, listaAtrabajar). 
+```
+resultados = pool.map(paraCadaUna, segmentos)
+```
+
 ### OverHead
 
 El primer codigo que implemente (incorrecto), me daba un tiempo mucho mayor en el parallelo esto por el ‘overhead’ esto se refiere al tiempo y recursos adicionales que se necesitan para gestionar el paralelismo. Aun podemos ver ejemplo de esto al usar este codigo con un solo segmento, la diferencia teorica enre un paralelismo de un segmento y la funcion baso no existe pero en la practica alg crear el pool de uno y otras tareas se gastan recursos.
@@ -115,11 +126,16 @@ Esto puede cambiar dependiendo de la cantidad de threads, el tamaño de la image
 O ( n / threads + overhead )
 ```
 
-
 ### Otro paradigma 
+##### Funcional
 
-Este  es un enfoque en programación que se basa en la aplicación de funciones matemáticas para transformar datos y resolver problemas. Se enfoca en la composición de funciones puras, evadiendo el uso de estado mutable y efectos secundarios. 
+Este  es un enfoque en programación que se basa en la aplicación de funciones matemáticas para transformar datos y resolver problemas. Se enfoca en la composición de funciones puras, evadiendo el uso de estado mutable y efectos secundarios. Algo caracteristico de este paradigma es la no mutabilidad de sus variables, es decir existen variables, y se usan pero estas no se redefinen.
+```
+blanconegrofuncinoal (r, g, b) = 0.299 * r + 0.587 * g + 0.114 * b
+```
+Se puede aproximar de la manera anteriormente mostrada con un pensamiento funcional, ahora para hacer esto de una manera funcional (valga la redundancia), deberemos de aplicar posiblemente con map, este mismo proceso con cada pixel.
 
+Una manera mas directa de aproximar esto aunque alejandonos un poco del pensamiento puramente funcional es la siguiente que funcionara con una imagen y no de un pixel, y almacena todos los valores dentro del espectro verde, rojo y azul y luego les aplica la formula para pasar a blanco y negro (es mas que nada pseudocodigo).
 ```
 def blanconegrofuncinoal(imagen):
     rojo = imagen[:, :, 2]
@@ -128,13 +144,13 @@ def blanconegrofuncinoal(imagen):
     gris = 0.299 * rojo + 0.587 * verde + 0.114 * azul
     return gris
 ```
-Esta función (no se si sea correcta) lo que hace basicamente es por medio de vectores, tomar todos los pixeles que pertenezcan a los canales rojo, verde , azul y tras esto les aplica la formula para pasar a blanco y negro.
+Esta función lo que hace basicamente es por medio de vectores, tomar todos los pixeles que pertenezcan a los canales rojo, verde , azul y tras esto les aplica la formula para pasar a blanco y negro.
 
 Para comparar ambas soluciones son relativamente parecidas aunque este para lo realiza de manera secuencial lo cual es mas lento, de igual manera se podria tambien decir que de cierta manera la solucion paralela es parte del paradigma funcional, concurrente y paralelo.
 
 ### Concluision
 
-El paradigma de paralelismo es muy utiles, para tareas grandes, a pesar de que para ciertas tareas puede general overhead, en realidad me parece muy aplicable a prácticamente cualquier tipo de proyectos, el único problema puede ser el desafío que representa pero en lo personal no me parecio tan desafía tomando en cuenta el beneficio en los recursos o mejor dicho tiempo que ahorra.
+El paradigma de paralelismo es muy utiles, para tareas grandes, a pesar de que para ciertas tareas puede general overhead, en realidad me parece muy aplicable a prácticamente cualquier tipo de proyectos, el único problema puede ser el desafío que representa pero en lo personal no me parecio tan desafía tomando en cuenta el beneficio en los recursos o mejor dicho tiempo que ahorra. 
 
 ### Referencias
 
