@@ -107,7 +107,14 @@ En cambio al probar con mas procesos que dividan la imagen y realicen el paralel
 
 ### Complejidad
 
-Ambas funciones tienen un complejidad de O(n), pero logiicamente como pudimos aprecirar la paralela es mas rapida, esto tiene como causante que realmente tiene una complejidad de O(n / threads).
+Ambas funciones tienen un complejidad de O(n), pero logiicamente como pudimos aprecirar la paralela es mas rapida, esto tiene como causante que realmente tiene una complejidad de O(n / (threads + overhead) ). La velocidad en nustros ejemplos usando 8 threads, es mas rapido con el paralelismo para eso podemos agregar una formula mas (tiempo secuencial / tiempo paralelo) : ![image](https://github.com/user-attachments/assets/82a0c006-79ad-459b-af64-3d5c943f8bdb)
+
+Esto puede cambiar dependiendo de la cantidad de threads, el tamaño de la imagen y adicionalmente el overhead tambien puede cambiar dependiendo la optimización del codigo y donde se corra (C++ seria mas rapido).
+
+```
+O ( n / threads + overhead )
+```
+
 
 ### Otro paradigma 
 
